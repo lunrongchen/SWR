@@ -13,9 +13,15 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
-from django.contrib import admin
 
-urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-]
+from wordvector import views
+from django.conf.urls import patterns, url, include
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'wordvector', views.WordVectorViewSet)
+
+urlpatterns = patterns('',
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+)
