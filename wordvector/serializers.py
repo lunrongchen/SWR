@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from wordvector.models import WordVector
 
-class WordVectorSerializer(serializers.Serializer):
+class WordVectorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = WordVector
         fields = ('url', 'data_src', 'dimension', 'word_text', 'word_vector')
