@@ -37,13 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
 
-    'rest_framework',
     'wordvector',
-=======
     'rest_framework',
->>>>>>> origin/Marcus
 )
 
 MIDDLEWARE_CLASSES = (

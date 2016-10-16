@@ -5,6 +5,8 @@ from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from wordvector.models import WordVector
 from wordvector.serializers import WordVectorSerializer
+from wordvector.serializers import UserSerializer
+from django.contrib.auth.models import User
 
 class WordVectorViewSet(viewsets.ModelViewSet):
     queryset = WordVector.objects.all()
@@ -14,3 +16,7 @@ class WordVectorViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
