@@ -17,11 +17,16 @@ Including another URLconf
 from wordvector import views
 from django.conf.urls import patterns, url, include
 from rest_framework.routers import DefaultRouter
-
-router = DefaultRouter()
-router.register(r'wordvector', views.WordVectorViewSet)
+from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
+#router = DefaultRouter()
+#router.register(r'wordvector', views.WordVectorViewSet)
 
 urlpatterns = patterns('',
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    #url(r'^', include(router.urls)),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^wordvectors/$', views.wordvector_list),
+    url(r'^wordvectors/(?P<data_src>\w+)/(?P<dimension>[0-9]+)/(?P<word_text>\w+)/$', views.wordvector_detail),
 )
+urlpatterns = format_suffix_patterns(urlpatterns);
