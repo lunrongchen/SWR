@@ -4,8 +4,8 @@ from rest_framework import viewsets
 from rest_framework import views
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-from wordvector.models import WordVector
-from wordvector.serializers import WordVectorSerializer,UserSerializer
+from wordvector.models import WordVector,WordVectorFile
+from wordvector.serializers import WordVectorSerializer,UserSerializer,WordVectorFileSerializer
 from django.contrib.auth.models import User
 from rest_framework.parsers import JSONParser,FileUploadParser,FormParser,MultiPartParser
 from rest_framework.response import Response
@@ -26,10 +26,12 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class FileUploadView(views.APIView):
-	parser_classes = (FileUploadParser,)
+class WordVectorFileViewSet(viewsets.ModelViewSet):
+	queryset = WordVectorFile.objects.all()
+	serializer_class = WordVectorFileSerializer
 
-	def put(self,request,filename,format = None):
-		file_obj = request.data['file']
-		return Response(status = 204)
+	@detail_route(renderer_classes=(renderers.StaticHTMLRenderer,))
+	def perform_create(self, serializer):
+		serializer.save()
+
 	
