@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
+
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
     'wordvector',
 )
@@ -73,6 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SWR.wsgi.application'
 
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

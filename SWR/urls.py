@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     #url(r'^', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^wordvectors/$', views.wordvector_list),
-    url(r'^wordvectors/(?P<data_src>\w+)/(?P<dimension>[0-9]+)/(?P<word_text>\w+)/$', views.wordvector_detail),
+    url(r'^wordvectors/$', views.WordvectorList.as_view()),
+    url(r'^wordvectors/(?P<data_src>\w+)/(?P<dimension>[0-9]+)/(?P<word_text>\w+)/$', views.WordvectorDetail.as_view()),
 )
 urlpatterns = format_suffix_patterns(urlpatterns);
