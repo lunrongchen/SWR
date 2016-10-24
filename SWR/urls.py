@@ -20,15 +20,22 @@ from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from django.contrib import admin
+from wordvector.views import FileUploadView
+from django.conf.urls.static import static
+from django.conf import settings
+
+
 router = DefaultRouter()
 router.register(r'wordvector', views.WordVectorViewSet)
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = patterns('',
-    url(r'^', include(router.urls)),
+    url(r'^',include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^admin/', include(admin.site.urls))
-)
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^upload/(?P<filename>[^/]+)$', FileUploadView.as_view())
+
+)+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 
 # from django.conf.urls import include, url
 
