@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class WordVectorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = WordVector
-        fields = ('url', 'data_src', 'dimension', 'word_text', 'word_vector')
+        fields = ('id', 'data_src', 'dimension', 'word_text', 'word_vector')
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
