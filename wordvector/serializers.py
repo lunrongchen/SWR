@@ -6,6 +6,7 @@ class WordVectorSerializer(serializers.HyperlinkedModelSerializer):
         model = WordVector
         fields = ('id', 'data_src', 'dimension', 'word_text', 'word_vector')
 
+
 # class WordVector(models.Model):
 #     data_src = models.CharField(max_length=100)
 #     dimension = models.IntegerField(default=50)
