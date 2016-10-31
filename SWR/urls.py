@@ -18,14 +18,14 @@ from django.conf.urls import patterns, url, include
 from rest_framework.routers import DefaultRouter
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
-#router = DefaultRouter()
-#router.register(r'wordvector', views.WordVectorViewSet)
 
 urlpatterns = patterns('',
     #url(r'^', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^wordvectorfiles/$', views.WordVectorFileList.as_view()),
     url(r'^wordvectors/$', views.WordvectorList.as_view()),
     url(r'^wordvectors/(?P<data_src>\w+)/(?P<dimension>[0-9]+)/(?P<word_text>\w+)/$', views.WordvectorDetail.as_view()),
 )
+
 urlpatterns = format_suffix_patterns(urlpatterns);

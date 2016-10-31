@@ -17,3 +17,17 @@ class WordVector(models.Model):
         wordvectors = WordVector.objects.all()
         if len(wordvectors) > 100:
             wordvectors[0].delete()
+
+class WordVectorFile(models.Model):
+    data_src = models.CharField(max_length=100)
+    dimension = models.IntegerField(default=50)
+    data_count = models.IntegerField(default=0)
+    data_link = models.FileField(upload_to='data_link/',default='data_link/None/No-data_link.zip')
+
+    class Meta:
+        unique_together = (('data_src', 'dimension'),)
+
+    def save(self, *args, **kwargs):
+        super(WordVectorFile, self).save(*args, **kwargs)
+
+        wordvectorfiles = WordVectorFile.objects.all()
