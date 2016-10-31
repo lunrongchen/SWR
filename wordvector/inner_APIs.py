@@ -28,7 +28,7 @@ class ApiError(Exception):
 
 class Inner_Apis:
 	def GetDataSources(self, host):
-		s = host + 'wordvectors/'
+		s = host + 'wordvectorfiles/'
 		resp = requests.get(s)
 		if resp.status_code != 200:
     		# This means something went wrong.

@@ -10,23 +10,12 @@ from rest_framework import status
 from django.http import Http404
 from rest_framework.views import APIView
 
-class WordvectorList(APIView):
-	def get(self, request, format=None):
-		# list all data_src
-		wordvectorsFile = WordVectorFile.objects.all();
-		serializer = WordVectorFileSerializer(wordvectorsFile, many=True);
-		
-		# list all wordvector
-		# wordvectors = WordVector.objects.all();
-		# serializer = WordVectorSerializer(wordvectors, many=True);
-		return Response(serializer.data);
-		
-	def post(self, request, format=None):
-		serializer = WordVectorSerializer(data=request.data)
-		if serializer.is_valid():
-			serializer.save()
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
-		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class WordvectorList(viewsets.ModelViewSet):
+	queryset = WordVector.objects.all()
+	serializer_class = WordVectorSerializer
+	@detail_route(renderer_classes=(renderers.StaticHTMLRenderer,))
+	def perform_create(self, serializer):
+		serializer.save()
 
 class WordvectorDetail(APIView):
 	#def get_object(self, data_src, dimension, word_text):

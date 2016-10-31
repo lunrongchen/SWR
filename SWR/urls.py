@@ -23,11 +23,11 @@ from django.conf import settings
 
 router = DefaultRouter()
 router.register(r'wordvectorfiles',views.WordVectorFileList)
+router.register(r'wordvectors',views.WordvectorList)
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^wordvectors/$', views.WordvectorList.as_view()),
     url(r'^wordvectors/(?P<data_src>\w+)/(?P<dimension>[0-9]+)/(?P<word_text>\w+)/$', views.WordvectorDetail.as_view()),
 ) +static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 
