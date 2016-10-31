@@ -1,6 +1,7 @@
 import zipfile
 import re
 from shutil import rmtree
+from models import WordVector
 
 class DataSetUploadHelper:
 
@@ -40,9 +41,14 @@ class DataSetUploadHelper:
         data_file = open(file_path, 'r')
 
         for line in data_file:
-            for item in line.split('\t'):
-                # build data model and call save API to database
-                pass
+            items = line.split('\t')
+            word_text = items[0]
+            word_vector = line[(len(word_text + '\t')):]
+            # wordvector_tmp = WordVector(data_src=self.data_src_name, dimension=self.dimension,
+            #                             word_text=word_text, word_vector=word_vector)
+            # wordvector_tmp.save()
+            print word_text
+            print word_vector
         data_file.close()
         #update database table
         rmtree(self.data_link[:-(len(".zip"))])
