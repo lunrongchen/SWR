@@ -10,7 +10,7 @@ class Tests(APITestCase):
 	# POST save a new wordvector
 	def test_create_wordvector(self):
 		# Create a JSON POST request
-		response = self.client.post('/wordvectors/', {'data_src': 'News', 'dimension' : 50, 'word_text' : 'NewYork', 'word_vector' : '[10.0,21,78]'}, format='json')
+		response = self.client.post('/wordvectors/', {'data_src': 'News', 'dimension' : 50, 'word_text' : 'New York', 'word_vector' : '[10.0,21,78]'}, format='json')
 
 		self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 		self.assertEqual(WordVector.objects.count(), 1)
