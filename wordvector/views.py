@@ -15,7 +15,10 @@ class WordvectorList(viewsets.ModelViewSet):
 	serializer_class = WordVectorSerializer
 	@detail_route(renderer_classes=(renderers.StaticHTMLRenderer,))
 	def perform_create(self, serializer):
+		instance = WordVectorFile.objects.get(data_src=serializer.validated_data['data_src'], dimension=serializer.validated_data['dimension'])
 		serializer.save()
+		instance.data_count = instance.data_count + 1;
+		instance.save()
 
 class WordvectorDetail(APIView):
 	#def get_object(self, data_src, dimension, word_text):
