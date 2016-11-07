@@ -1,5 +1,10 @@
+import zipfile
+import re
+import django
+import os
 from django.db import models
 from pygments.lexers import get_lexer_by_name
+from shutil import rmtree
 
 class WordVector(models.Model):
     data_src = models.CharField(max_length=100)
@@ -29,5 +34,16 @@ class WordVectorFile(models.Model):
 
     def save(self, *args, **kwargs):
         super(WordVectorFile, self).save(*args, **kwargs)
-
         wordvectorfiles = WordVectorFile.objects.all()
+
+    def get_data_src(model):
+        return model._meta.data_src
+
+    def get_dimension(model):
+        return model._meta.dimension
+
+    def get_data_count(model):
+        return model._meta.data_count
+
+    def get_data_link(model):
+        return model._meta.data_link

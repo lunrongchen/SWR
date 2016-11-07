@@ -34,6 +34,7 @@ class WordvectorDetail(APIView):
 	 	wordvector.delete()
 		return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class WordVectorFileList(viewsets.ModelViewSet):
 	queryset = WordVectorFile.objects.all()
 	serializer_class = WordVectorFileSerializer
@@ -41,4 +42,4 @@ class WordVectorFileList(viewsets.ModelViewSet):
 	@detail_route(renderer_classes=(renderers.StaticHTMLRenderer,))
 	def perform_create(self, serializer):
 		serializer.save()
-	
+
