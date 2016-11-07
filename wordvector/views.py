@@ -19,7 +19,6 @@ class WordvectorList(viewsets.ModelViewSet):
 		serializer.save()
 		instance.data_count = instance.data_count + 1;
 		instance.save()
-		
 
 class WordvectorDetail(APIView):
 	#def get_object(self, data_src, dimension, word_text):
